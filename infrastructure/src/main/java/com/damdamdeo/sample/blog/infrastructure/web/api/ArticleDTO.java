@@ -14,7 +14,7 @@ public record ArticleDTO(String articleId,
                          ZonedDateTime publishedAt,
                          Boolean canPublish,
                          Boolean canWrite,
-                         Boolean openToComment) {
+                         Boolean openedToComment) {
     public ArticleDTO(final Article article, final ExecutedBy executed) {
         this(article.articleId().id(),
                 article.author().name(),
@@ -24,7 +24,7 @@ public record ArticleDTO(String articleId,
                 article.publishedAt().at(),
                 article.canPublish(executed),
                 article.canWrite(executed),
-                article.openToComment());
+                article.isOpenedToComment());
     }
 
 }

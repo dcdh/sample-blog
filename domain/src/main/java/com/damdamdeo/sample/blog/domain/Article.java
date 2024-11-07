@@ -53,13 +53,13 @@ public final class Article {
         return this.state == State.DRAFT && executed.matchesAuthor(author);
     }
 
-    public boolean openToComment() {
+    public boolean isOpenedToComment() {
         return this.state == State.PUBLISHED;
     }
 
     public void addComment(final Comment comment) throws CommentsNotOpenedYetException {
         Objects.requireNonNull(comment);
-        if (!openToComment()) {
+        if (!isOpenedToComment()) {
             throw new CommentsNotOpenedYetException(articleId);
         }
         this.comments.add(comment);
