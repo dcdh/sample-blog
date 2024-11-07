@@ -13,6 +13,7 @@ public final class Article {
     private State state;
     private PublishedAt publishedAt;
     private final List<Comment> comments = new ArrayList<>();
+    // TODO versionning for optimistic locking
 
     public Article(final ArticleId articleId) {
         this.articleId = Objects.requireNonNull(articleId);
