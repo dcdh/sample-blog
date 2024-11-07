@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+// ddd entity and also the aggregate root
 public final class Article {
 
     private final ArticleId articleId;
