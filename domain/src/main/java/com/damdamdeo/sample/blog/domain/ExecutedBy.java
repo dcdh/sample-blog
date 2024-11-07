@@ -1,17 +1,16 @@
 package com.damdamdeo.sample.blog.domain;
 
-import java.util.Objects;
+public final class ExecutedBy extends Named {
 
-public record ExecutedBy(String by) {
-    public ExecutedBy {
-        Objects.requireNonNull(by);
+    public ExecutedBy(final String name) {
+        super(name);
     }
 
     public boolean matchesAuthor(final Author author) {
-        return by.equals(author.name());
+        return name.equals(author.name());
     }
 
     public Author toAuthor() {
-        return new Author(by);
+        return new Author(name);
     }
 }
