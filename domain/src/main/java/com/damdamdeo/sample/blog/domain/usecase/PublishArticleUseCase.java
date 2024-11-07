@@ -20,7 +20,6 @@ public class PublishArticleUseCase {
     public Article execute(PublishArticleCommand publishArticleCommand) throws PublishArticleException {
         try {
             final Article article = articleRepository.getById(publishArticleCommand.articleId());
-            // TODO handle article not found
             return article.publish(publishedAtProvider.now(), publishArticleCommand.executedBy());
         } catch (final Exception e) {
             throw new PublishArticleException(e);
