@@ -6,6 +6,7 @@ import com.damdamdeo.sample.blog.domain.spi.PublishedAtProvider;
 
 import java.util.Objects;
 
+// use case orchestrating article publication
 public class PublishArticleUseCase {
 
     private final ArticleRepository articleRepository;
