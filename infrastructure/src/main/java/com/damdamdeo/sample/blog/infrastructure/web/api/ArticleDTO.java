@@ -13,7 +13,8 @@ public record ArticleDTO(String articleId,
                          State state,
                          ZonedDateTime publishedAt,
                          Boolean canPublish,
-                         Boolean canWrite) {
+                         Boolean canWrite,
+                         Boolean openToComment) {
     public ArticleDTO(final Article article, final ExecutedBy executed) {
         this(article.articleId().id(),
                 article.author().name(),
@@ -22,7 +23,8 @@ public record ArticleDTO(String articleId,
                 article.state(),
                 article.publishedAt().at(),
                 article.canPublish(executed),
-                article.canWrite(executed));
+                article.canWrite(executed),
+                article.openToComment());
     }
 
 }

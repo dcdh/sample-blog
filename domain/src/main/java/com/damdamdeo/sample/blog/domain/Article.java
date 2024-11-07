@@ -2,6 +2,8 @@ package com.damdamdeo.sample.blog.domain;
 
 import com.damdamdeo.sample.blog.domain.spi.PublishedAtProvider;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public final class Article {
@@ -12,6 +14,7 @@ public final class Article {
     private String content;
     private State state;
     private PublishedAt publishedAt;
+    private final List<Comment> comments = new ArrayList<>();
 
     public Article(final ArticleId articleId) {
         this.articleId = Objects.requireNonNull(articleId);
@@ -49,6 +52,18 @@ public final class Article {
     public boolean canPublish(final ExecutedBy executed) {
         Objects.requireNonNull(executed);
         return this.state == State.DRAFT && executed.matchesAuthor(author);
+    }
+
+    public boolean openToComment() {
+        return this.state == State.PUBLISHED;
+    }
+
+    public void addComment(final Comment comment) throws CommentsNotOpenedYetException {
+        Objects.requireNonNull(comment);
+        if (!openToComment()) {
+            throw new CommentsNotOpenedYetException(articleId);
+        }
+        this.comments.add(comment);
     }
 
     public ArticleId articleId() {
