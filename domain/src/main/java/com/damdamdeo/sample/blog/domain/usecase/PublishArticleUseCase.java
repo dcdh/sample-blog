@@ -7,6 +7,7 @@ import com.damdamdeo.sample.blog.domain.spi.PublishedAtProvider;
 import java.util.Objects;
 
 // use case orchestrating article publication
+// can use Uni for async execution of the use case if needed
 public class PublishArticleUseCase {
 
     private final ArticleRepository articleRepository;
