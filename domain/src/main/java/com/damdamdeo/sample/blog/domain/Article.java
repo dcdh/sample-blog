@@ -1,7 +1,5 @@
 package com.damdamdeo.sample.blog.domain;
 
-import com.damdamdeo.sample.blog.domain.spi.PublishedAtProvider;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -32,13 +30,14 @@ public final class Article {
         this.state = State.DRAFT;
     }
 
-    public void publish(final PublishedAtProvider publishedAtProvider,
+    public Article publish(final PublishedAt publishedAt,
                         final ExecutedBy executedBy) throws CannotPublishArticleException {
         if (!canPublish(executedBy)) {
             throw new CannotPublishArticleException(articleId);
         }
         this.state = State.PUBLISHED;
-        this.publishedAt = publishedAtProvider.now();
+        this.publishedAt = Objects.requireNonNull(publishedAt);
+        return this;
     }
 
     public boolean canWrite(final ExecutedBy executed) {
